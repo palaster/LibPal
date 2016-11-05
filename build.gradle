@@ -16,9 +16,9 @@ version = "${config.version}"
 group= "palaster.libpal"
 archivesBaseName = "lp"
 
-sourceCompatibility = targetCompatibility = "1.6"
+sourceCompatibility = targetCompatibility = "1.8"
 compileJava {
-    sourceCompatibility = targetCompatibility = "1.6"
+    sourceCompatibility = targetCompatibility = "1.8"
 }
 
 minecraft {

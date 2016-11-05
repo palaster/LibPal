@@ -9,13 +9,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import palaster.libpal.blocks.tile.TileEntityModInventory;
 
-public class BlockModContainer extends BlockMod {
+public abstract class BlockModContainer extends BlockMod {
 
 	public BlockModContainer(ResourceLocation rl, Material material) { super(rl, material); }
 	
-	// Override in classes that extend this class.
+	public abstract TileEntity createModTileEntity(World world, IBlockState state);
+	
 	@Override
-	public TileEntity createTileEntity(World world, IBlockState state) { return super.createTileEntity(world, state); }
+	public TileEntity createTileEntity(World world, IBlockState state) { return createModTileEntity(world, state) != null ? createModTileEntity(world, state) : super.createTileEntity(world, state); }
 	
 	@Override
 	public boolean hasTileEntity(IBlockState state) { return true; }

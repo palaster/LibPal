@@ -26,11 +26,7 @@ public class OpenGuiMessage extends AbstractServerMessage<OpenGuiMessage> {
 		if(stringLength > 0)
 			try {
 				o = Class.forName(buffer.readStringFromBuffer(stringLength)).newInstance();
-			} catch (InstantiationException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		id = buffer.readInt();

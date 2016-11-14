@@ -1,15 +1,13 @@
 package palaster.libpal.items;
 
-import net.minecraft.util.ResourceLocation;
-
 public class ItemModSpecial extends ItemMod {
 
-	public ItemModSpecial(ResourceLocation rl) { this(rl, 0, 1); }
+	public ItemModSpecial() { this(0, 1); }
 
-	public ItemModSpecial(ResourceLocation rl, int maxDamage) { this(rl, maxDamage, 1); }
+	public ItemModSpecial(int maxDamage) { this(maxDamage, 1); }
 	
-	public ItemModSpecial(ResourceLocation rl, int maxDamage, int maxStackSize) {
-		super(rl);
+	public ItemModSpecial(int maxDamage, int maxStackSize) {
+		super();
 		setMaxDamage(maxDamage);
 		setMaxStackSize(maxStackSize <= 0 ? 1 : maxStackSize);
 	}

@@ -31,11 +31,14 @@ public abstract class TileEntityMod extends TileEntity implements ITickable {
 	}
 	
 	@Override
+	public NBTTagCompound getUpdateTag() { return writeToNBT(new NBTTagCompound()); }
+	
+	@Override
 	@Nullable
 	public SPacketUpdateTileEntity getUpdatePacket() {
 		NBTTagCompound tag = new NBTTagCompound();
 		writePacketNBT(tag);
-		return super.getUpdatePacket();
+		return new SPacketUpdateTileEntity(pos, -999, tag);
 	}
 	
 	@Override

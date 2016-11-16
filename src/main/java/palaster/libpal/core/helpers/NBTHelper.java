@@ -67,7 +67,7 @@ public class NBTHelper {
 	@Nullable
 	public static UUID getUUIDFromItemStack(ItemStack stack, String key) {
 		if(stack.hasTagCompound())
-			if(stack.getTagCompound().hasKey(key))
+			if(stack.getTagCompound().hasUniqueId(key))
 				return stack.getTagCompound().getUniqueId(key);
 		return null;
 	}

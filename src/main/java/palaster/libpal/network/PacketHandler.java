@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import palaster.libpal.libs.LibMod;
+import palaster.libpal.network.server.GuiButtonMessage;
 import palaster.libpal.network.server.OpenGuiMessage;
 
 public class PacketHandler {
@@ -15,7 +16,10 @@ public class PacketHandler {
 	private static byte packetId = 0;
 	private static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(LibMod.MODID);
 	
-	public static final void registerPackets() { registerMessage(OpenGuiMessage.class); }
+	public static final void registerPackets() {
+		registerMessage(OpenGuiMessage.class);
+		registerMessage(GuiButtonMessage.class);
+	}
 	
 	public static final <T extends AbstractMessage<T> & IMessageHandler<T, IMessage>> void registerMessage(Class<T> clazz) {
 		if (AbstractMessage.AbstractClientMessage.class.isAssignableFrom(clazz))

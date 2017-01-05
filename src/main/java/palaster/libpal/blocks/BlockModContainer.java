@@ -11,12 +11,12 @@ import palaster.libpal.blocks.tile.TileEntityModInventory;
 public abstract class BlockModContainer extends BlockMod {
 
 	public BlockModContainer(Material material) { super(material); }
-	
+
 	public abstract TileEntity createModTileEntity(World world, IBlockState state);
-	
+
 	@Override
 	public TileEntity createTileEntity(World world, IBlockState state) { return createModTileEntity(world, state) != null ? createModTileEntity(world, state) : super.createTileEntity(world, state); }
-	
+
 	@Override
 	public boolean hasTileEntity(IBlockState state) { return true; }
 

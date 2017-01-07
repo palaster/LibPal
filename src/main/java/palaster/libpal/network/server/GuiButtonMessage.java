@@ -43,7 +43,7 @@ public class GuiButtonMessage extends AbstractServerMessage<GuiButtonMessage> {
 	protected void process(EntityPlayer player, Side side) {
 		if(hand != -1) {
 			EnumHand h = hand == 0 ? EnumHand.MAIN_HAND : EnumHand.OFF_HAND ;
-			if(!player.getHeldItem(h).func_190926_b())
+			if(!player.getHeldItem(h).isEmpty())
 				if(player.getHeldItem(h).getItem() instanceof IReceiveButton)
 					((IReceiveButton) player.getHeldItem(h).getItem()).receiveButtonEvent(id, player);
 		}

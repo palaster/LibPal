@@ -47,9 +47,9 @@ public abstract class TileEntityMod extends TileEntity implements ITickable {
 		readPacketNBT(pkt.getNbtCompound());
 	}
 	
-	public void writePacketNBT(NBTTagCompound compound) {}
+	public abstract void writePacketNBT(NBTTagCompound compound);
 
-	public void readPacketNBT(NBTTagCompound compound) {}
+	public abstract void readPacketNBT(NBTTagCompound compound);
 	
 	public void receiveButtonEvent(int id, EntityPlayer player) {}
 }

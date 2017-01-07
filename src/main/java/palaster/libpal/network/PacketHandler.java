@@ -40,7 +40,7 @@ public class PacketHandler {
 
 	public static final void sendToAllAround(IMessage message, int dimension, double x, double y, double z, double range) { PacketHandler.sendToAllAround(message, new NetworkRegistry.TargetPoint(dimension, x, y, z, range)); }
 
-	public static final void sendToAllAround(IMessage message, EntityPlayer player, double range) { PacketHandler.sendToAllAround(message, player.worldObj.provider.getDimension(), player.posX, player.posY, player.posZ, range); }
+	public static final void sendToAllAround(IMessage message, EntityPlayer player, double range) { PacketHandler.sendToAllAround(message, player.world.provider.getDimension(), player.posX, player.posY, player.posZ, range); }
 
 	public static final void sendToDimension(IMessage message, int dimensionId) { PacketHandler.INSTANCE.sendToDimension(message, dimensionId); }
 

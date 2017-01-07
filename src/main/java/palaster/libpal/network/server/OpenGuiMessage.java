@@ -25,7 +25,7 @@ public class OpenGuiMessage extends AbstractServerMessage<OpenGuiMessage> {
 		int stringLength = buffer.readInt();
 		if(stringLength > 0)
 			try {
-				o = Class.forName(buffer.readStringFromBuffer(stringLength)).newInstance();
+				o = Class.forName(buffer.readString(stringLength)).newInstance();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -42,5 +42,5 @@ public class OpenGuiMessage extends AbstractServerMessage<OpenGuiMessage> {
 	}
 
 	@Override
-	public void process(EntityPlayer player, Side side) { player.openGui(o, this.id, player.worldObj, pos.getX(), pos.getY(), pos.getZ()); }
+	public void process(EntityPlayer player, Side side) { player.openGui(o, this.id, player.world, pos.getX(), pos.getY(), pos.getZ()); }
 }

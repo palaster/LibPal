@@ -63,8 +63,8 @@ public abstract class TileEntityModInventory extends TileEntityMod {
 		public ItemStack extractItem(int slot, int amount, boolean simulate) {
 			if(allowWrite)
 				return super.extractItem(slot, amount, simulate);
-			else 
-				return ItemStack.field_190927_a;
+			else
+				return ItemStack.EMPTY;
 		}
 
 		@Override

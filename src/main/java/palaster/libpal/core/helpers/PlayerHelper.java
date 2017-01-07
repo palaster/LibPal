@@ -13,7 +13,7 @@ public class PlayerHelper {
 
 	public static void sendChatMessageToPlayer(@Nullable EntityPlayer player, String string) {
 		if(player != null)
-			player.addChatMessage(new TextComponentString(string));
+			player.sendMessage(new TextComponentString(string));
 	}
 
 	@Nullable

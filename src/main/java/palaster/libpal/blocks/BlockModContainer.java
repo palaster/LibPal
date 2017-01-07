@@ -26,7 +26,7 @@ public abstract class BlockModContainer extends BlockMod {
 		if(te != null && te instanceof TileEntityModInventory)
 			for(int i = 0; i < ((TileEntityModInventory) te).getSizeInventory(); i++)
 				if(((TileEntityModInventory) te).getItemHandler().getStackInSlot(i) != null)
-					worldIn.spawnEntityInWorld(new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), ((TileEntityModInventory) te).getItemHandler().getStackInSlot(i)));
+					worldIn.spawnEntity(new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), ((TileEntityModInventory) te).getItemHandler().getStackInSlot(i)));
 		super.breakBlock(worldIn, pos, state);
 	}
 }

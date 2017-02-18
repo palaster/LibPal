@@ -23,26 +23,26 @@ public class PacketHandler {
 	
 	public static final <T extends AbstractMessage<T> & IMessageHandler<T, IMessage>> void registerMessage(Class<T> clazz) {
 		if (AbstractMessage.AbstractClientMessage.class.isAssignableFrom(clazz))
-			PacketHandler.INSTANCE.registerMessage(clazz, clazz, packetId++, Side.CLIENT);
+			INSTANCE.registerMessage(clazz, clazz, packetId++, Side.CLIENT);
 		else if (AbstractMessage.AbstractServerMessage.class.isAssignableFrom(clazz))
-			PacketHandler.INSTANCE.registerMessage(clazz, clazz, packetId++, Side.SERVER);
+			INSTANCE.registerMessage(clazz, clazz, packetId++, Side.SERVER);
 		else {
-			PacketHandler.INSTANCE.registerMessage(clazz, clazz, packetId, Side.CLIENT);
-			PacketHandler.INSTANCE.registerMessage(clazz, clazz, packetId++, Side.SERVER);
+			INSTANCE.registerMessage(clazz, clazz, packetId, Side.CLIENT);
+			INSTANCE.registerMessage(clazz, clazz, packetId++, Side.SERVER);
 		}
 	}
 
-	public static final void sendTo(IMessage message, EntityPlayerMP player) { PacketHandler.INSTANCE.sendTo(message, player); }
+	public static final void sendTo(IMessage message, EntityPlayerMP player) { INSTANCE.sendTo(message, player); }
 
-	public static void sendToAll(IMessage message) { PacketHandler.INSTANCE.sendToAll(message); }
+	public static void sendToAll(IMessage message) { INSTANCE.sendToAll(message); }
 
-	public static final void sendToAllAround(IMessage message, NetworkRegistry.TargetPoint point) { PacketHandler.INSTANCE.sendToAllAround(message, point); }
+	public static final void sendToAllAround(IMessage message, NetworkRegistry.TargetPoint point) { INSTANCE.sendToAllAround(message, point); }
 
 	public static final void sendToAllAround(IMessage message, int dimension, double x, double y, double z, double range) { PacketHandler.sendToAllAround(message, new NetworkRegistry.TargetPoint(dimension, x, y, z, range)); }
 
 	public static final void sendToAllAround(IMessage message, EntityPlayer player, double range) { PacketHandler.sendToAllAround(message, player.world.provider.getDimension(), player.posX, player.posY, player.posZ, range); }
 
-	public static final void sendToDimension(IMessage message, int dimensionId) { PacketHandler.INSTANCE.sendToDimension(message, dimensionId); }
+	public static final void sendToDimension(IMessage message, int dimensionId) { INSTANCE.sendToDimension(message, dimensionId); }
 
-	public static final void sendToServer(IMessage message) { PacketHandler.INSTANCE.sendToServer(message); }
+	public static final void sendToServer(IMessage message) { INSTANCE.sendToServer(message); }
 }

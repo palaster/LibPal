@@ -20,8 +20,14 @@ public class EventHandler {
 	@SideOnly(Side.CLIENT)
 	public static void registerModels(ModelRegistryEvent e) {
 		for(Block block : Block.REGISTRY)
-			if(block instanceof IModObject)
-				ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
+			if(block instanceof IModObject) {
+				Item item = Item.getItemFromBlock(block);
+				if(item instanceof ISubType)
+					for(int i = 0; i < ((ISubType) item).getAmountOfSubTypes(); i++)
+						ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(block.getRegistryName().getResourceDomain() + ":" + ((ISubType) item).getTypes()[i], "inventory"));
+				else
+					ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(block.getRegistryName(), "inventory" ));
+			}
 		for(Item item : Item.REGISTRY)
 			if(item instanceof IModObject) {
 				if(item instanceof ISubType)

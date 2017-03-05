@@ -2,7 +2,7 @@ package palaster.libpal.api;
 
 public interface ISubType {
 	
-	int getAmountOfSubTypes();
+	default int getAmountOfSubTypes() { return getTypes().length; }
 	
 	String[] getTypes();
 }

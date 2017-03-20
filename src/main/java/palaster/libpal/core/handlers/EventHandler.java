@@ -10,9 +10,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import palaster.libpal.api.IModObject;
 import palaster.libpal.api.ISubType;
-import palaster.libpal.libs.LibMod;
 
-@Mod.EventBusSubscriber(modid = LibMod.MODID)
+@Mod.EventBusSubscriber
 public class EventHandler {
 
 	@SubscribeEvent

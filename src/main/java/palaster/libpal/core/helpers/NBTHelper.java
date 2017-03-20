@@ -5,6 +5,7 @@ import java.util.UUID;
 import javax.annotation.Nullable;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class NBTHelper {
@@ -43,6 +44,14 @@ public class NBTHelper {
 		return stack;
 	}
 	
+	public static ItemStack setTagToItemStack(ItemStack stack, String key, @Nullable NBTBase value) {
+		if(!stack.hasTagCompound())
+			stack = giveNBTTagCompound(stack);
+		if(value != null)
+			stack.getTagCompound().setTag(key, value);
+		return stack;
+	}
+	
 	public static int getIntegerFromItemStack(ItemStack stack, String key) {
 		if(stack.hasTagCompound())
 			if(stack.getTagCompound().hasKey(key))
@@ -69,6 +78,14 @@ public class NBTHelper {
 		if(stack.hasTagCompound())
 			if(stack.getTagCompound().hasUniqueId(key))
 				return stack.getTagCompound().getUniqueId(key);
+		return null;
+	}
+	
+	@Nullable
+	public static NBTBase getTagFromItemStack(ItemStack stack, String key) {
+		if(stack.hasTagCompound())
+			if(stack.getTagCompound().hasKey(key))
+				return stack.getTagCompound().getTag(key);
 		return null;
 	}
 }

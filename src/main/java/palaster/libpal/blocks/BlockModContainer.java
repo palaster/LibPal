@@ -4,20 +4,19 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import palaster.libpal.blocks.tile.TileEntityModInventory;
 
 public abstract class BlockModContainer extends BlockMod {
 
-	public BlockModContainer(ResourceLocation rl, Material material) { super(rl, material); }
-	
+	public BlockModContainer(Material material) { super(material); }
+
 	public abstract TileEntity createModTileEntity(World world, IBlockState state);
-	
+
 	@Override
 	public TileEntity createTileEntity(World world, IBlockState state) { return createModTileEntity(world, state) != null ? createModTileEntity(world, state) : super.createTileEntity(world, state); }
-	
+
 	@Override
 	public boolean hasTileEntity(IBlockState state) { return true; }
 
@@ -27,7 +26,7 @@ public abstract class BlockModContainer extends BlockMod {
 		if(te != null && te instanceof TileEntityModInventory)
 			for(int i = 0; i < ((TileEntityModInventory) te).getSizeInventory(); i++)
 				if(((TileEntityModInventory) te).getItemHandler().getStackInSlot(i) != null)
-					worldIn.spawnEntityInWorld(new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), ((TileEntityModInventory) te).getItemHandler().getStackInSlot(i)));
+					worldIn.spawnEntity(new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), ((TileEntityModInventory) te).getItemHandler().getStackInSlot(i)));
 		super.breakBlock(worldIn, pos, state);
 	}
 }

@@ -2,23 +2,13 @@ package palaster.libpal.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import palaster.libpal.api.IModObject;
 
-public class BlockMod extends Block {
+public class BlockMod extends Block implements IModObject {
 
-	public BlockMod(ResourceLocation rl, Material materialIn) {
+	public BlockMod(Material materialIn) {
 		super(materialIn);
 		setHardness(3F);
 		setHarvestLevel("pickaxe", 0);
-		register(rl);
-	}
-	
-	public void register(ResourceLocation rl) {
-		setRegistryName(rl);
-		GameRegistry.register(this);
-		GameRegistry.register(new ItemBlock(this).setRegistryName(rl));
-		super.setUnlocalizedName(rl.getResourcePath());
 	}
 }

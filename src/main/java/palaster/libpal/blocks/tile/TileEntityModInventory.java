@@ -12,11 +12,11 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public abstract class TileEntityModInventory extends TileEntityMod {
 
-	protected SimpleItemStackHandler itemHandler = new SimpleItemStackHandler(this, true);
+	protected SimpleItemStackHandler itemHandler = createItemHandler();
 	
 	@Override
 	public void readPacketNBT(NBTTagCompound compound) {
-		itemHandler = new SimpleItemStackHandler(this, true);
+		itemHandler = createItemHandler();
 		itemHandler.deserializeNBT(compound);
 	}
 	
@@ -25,6 +25,8 @@ public abstract class TileEntityModInventory extends TileEntityMod {
 	
 	public abstract int getSizeInventory();
 
+	protected SimpleItemStackHandler createItemHandler() { return new SimpleItemStackHandler(this, true); }
+	
 	public IItemHandlerModifiable getItemHandler() { return itemHandler; }
 
 	@Override
@@ -61,8 +63,8 @@ public abstract class TileEntityModInventory extends TileEntityMod {
 		public ItemStack extractItem(int slot, int amount, boolean simulate) {
 			if(allowWrite)
 				return super.extractItem(slot, amount, simulate);
-			else 
-				return null;
+			else
+				return ItemStack.EMPTY;
 		}
 
 		@Override

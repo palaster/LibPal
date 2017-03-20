@@ -8,14 +8,14 @@ import palaster.libpal.network.AbstractMessage.AbstractServerMessage;
 
 public class OpenGuiMessage extends AbstractServerMessage<OpenGuiMessage> {
 
-	private Object o;
+	private String s;
 	private int id;
 	private BlockPos pos;
 	
 	public OpenGuiMessage() {}
 	
-	public OpenGuiMessage(Object o, int id, BlockPos pos) {
-		this.o = o;
+	public OpenGuiMessage(String s, int id, BlockPos pos) {
+		this.s = s;
 		this.id = id;
 		this.pos = pos;
 	}
@@ -24,23 +24,20 @@ public class OpenGuiMessage extends AbstractServerMessage<OpenGuiMessage> {
 	protected void read(PacketBuffer buffer) {
 		int stringLength = buffer.readInt();
 		if(stringLength > 0)
-			try {
-				o = Class.forName(buffer.readStringFromBuffer(stringLength)).newInstance();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			s = buffer.readString(stringLength);
 		id = buffer.readInt();
 		pos = buffer.readBlockPos();
 	}
 
 	@Override
 	protected void write(PacketBuffer buffer) {
-		buffer.writeInt(o.getClass().getName().length());
+		buffer.writeInt(s.length());
+		buffer.writeString(s);
 		buffer.writeInt(id);
 		if(pos != null)
 			buffer.writeBlockPos(pos);
 	}
 
 	@Override
-	public void process(EntityPlayer player, Side side) { player.openGui(o, this.id, player.worldObj, pos.getX(), pos.getY(), pos.getZ()); }
+	public void process(EntityPlayer player, Side side) { player.openGui(s, this.id, player.world, pos.getX(), pos.getY(), pos.getZ()); }
 }

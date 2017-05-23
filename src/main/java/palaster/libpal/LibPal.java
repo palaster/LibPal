@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import palaster.libpal.core.proxy.CommonProxy;
 import palaster.libpal.libs.LibMod;
 
-@Mod(modid = LibMod.MODID, name = LibMod.NAME, version = LibMod.VERSION)
+@Mod(modid = LibMod.MODID, name = LibMod.NAME, version = LibMod.VERSION, dependencies = LibMod.DEPENDENCIES, guiFactory = LibMod.GUI_FACTORY, updateJSON = LibMod.UPDATE_JSON)
 public class LibPal {
 
 	@Instance(LibMod.MODID)
@@ -20,7 +20,7 @@ public class LibPal {
 	public static CommonProxy proxy;
 	
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent e) { proxy.preInit(); }
+	public void preInit(FMLPreInitializationEvent e) { proxy.preInit(e); }
 	
 	@EventHandler
 	public void init(FMLInitializationEvent e) { proxy.init(); }

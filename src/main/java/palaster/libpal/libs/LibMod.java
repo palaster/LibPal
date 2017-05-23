@@ -6,7 +6,7 @@ public class LibMod {
 			NAME = "LibPal",
 			VERSION = "@VERSION@",
 			DEPENDENCIES = "",
-			GUI_FACTORY = "",
+			GUI_FACTORY = "palaster.libpal.client.gui.ModGuiFactory",
 			UPDATE_JSON = "https://raw.githubusercontent.com/palaster/LibPal/HEAD/version/update.json";
 	
 	public static final String CLIENT = "palaster.libpal.core.proxy.ClientProxy",

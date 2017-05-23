@@ -22,9 +22,9 @@ public class PacketHandler {
 	}
 	
 	public static final <T extends AbstractMessage<T> & IMessageHandler<T, IMessage>> void registerMessage(Class<T> clazz) {
-		if (AbstractMessage.AbstractClientMessage.class.isAssignableFrom(clazz))
+		if(AbstractMessage.AbstractClientMessage.class.isAssignableFrom(clazz))
 			INSTANCE.registerMessage(clazz, clazz, packetId++, Side.CLIENT);
-		else if (AbstractMessage.AbstractServerMessage.class.isAssignableFrom(clazz))
+		else if(AbstractMessage.AbstractServerMessage.class.isAssignableFrom(clazz))
 			INSTANCE.registerMessage(clazz, clazz, packetId++, Side.SERVER);
 		else {
 			INSTANCE.registerMessage(clazz, clazz, packetId, Side.CLIENT);

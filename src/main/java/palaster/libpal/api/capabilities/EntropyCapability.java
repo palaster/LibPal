@@ -23,7 +23,7 @@ public class EntropyCapability {
 
 		@Override
 		public void setAge(int age) {
-			if(age > 0 && age <= maxAge)
+			if(age > 0 && age <= maxAge && age < Integer.MAX_VALUE)
 				this.age = age;
 		}
 
@@ -41,10 +41,12 @@ public class EntropyCapability {
 		
 		@Override
 		public void update(EntityLiving living) {
-			if(getAge() == getMaxAge())
-				living.setDead();
-			else
-				setAge(getAge() + 1);
+			if(getAge() <= Integer.MAX_VALUE) {
+				if(getAge() == getMaxAge())
+					living.setDead();
+				else
+					setAge(getAge() + 1);
+			}
 		}
 
 		@Override

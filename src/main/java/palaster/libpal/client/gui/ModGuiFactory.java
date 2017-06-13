@@ -20,6 +20,13 @@ public class ModGuiFactory implements IModGuiFactory {
 	public void initialize(Minecraft minecraftInstance) {}
 
 	@Override
+	public boolean hasConfigGui() { return true; }
+
+	@Override
+	public GuiScreen createConfigGui(GuiScreen parentScreen) { return new ModGuiConfig(parentScreen); }
+
+	@Override
+	@Deprecated
 	public Class<? extends GuiScreen> mainConfigGuiClass() { return ModGuiConfig.class; }
 
 	@Override

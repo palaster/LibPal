@@ -16,10 +16,10 @@ public class EntropyCapability {
 	public static class EntropyCapabilityDefault implements IEntropy {
 	
 		public static final String TAG_STRING_AGE = "EntropyAge",
-				TAG_STRING_MAX_AGE = "EntropyMaxAge";
+		TAG_STRING_MAX_AGE = "EntropyMaxAge";
 		
 		private int age = 0,
-				maxAge = -1;
+		maxAge = -1;
 
 		@Override
 		public void setAge(int age) {

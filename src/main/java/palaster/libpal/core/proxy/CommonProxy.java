@@ -26,7 +26,7 @@ public class CommonProxy {
 	
 	public void postInit() {}
 
-	public EntityPlayer getPlayerEntity(MessageContext ctx) { return ctx.getServerHandler().playerEntity; }
+	public EntityPlayer getPlayerEntity(MessageContext ctx) { return ctx.getServerHandler().player; }
 	
-	public IThreadListener getThreadFromContext(MessageContext ctx) { return ctx.getServerHandler().playerEntity.getServerWorld(); }
+	public IThreadListener getThreadFromContext(MessageContext ctx) { return ctx.getServerHandler().player.getServerWorld(); }
 }

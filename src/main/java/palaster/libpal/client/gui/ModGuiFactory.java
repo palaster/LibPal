@@ -26,14 +26,7 @@ public class ModGuiFactory implements IModGuiFactory {
 	public GuiScreen createConfigGui(GuiScreen parentScreen) { return new ModGuiConfig(parentScreen); }
 
 	@Override
-	@Deprecated
-	public Class<? extends GuiScreen> mainConfigGuiClass() { return ModGuiConfig.class; }
-
-	@Override
 	public Set<RuntimeOptionCategoryElement> runtimeGuiCategories() { return null; }
-
-	@Override
-	public RuntimeOptionGuiHandler getHandlerFor(RuntimeOptionCategoryElement element) { return null; }
 	
 	public static class ModGuiConfig extends GuiConfig {
 

@@ -29,7 +29,7 @@ public class EntropyCapability {
 
 		@Override
 		public void setMaxAge(int maxAge) {
-			if(maxAge > 0 && maxAge < Integer.MAX_VALUE)
+			if((maxAge > 0 || maxAge == -1) && maxAge < Integer.MAX_VALUE)
 				this.maxAge = maxAge;
 		}
 
@@ -80,7 +80,7 @@ public class EntropyCapability {
 		public EntropyCapabilityProvider(EntityLiving living) {
 			entropy = new EntropyCapabilityDefault();
 			if(living instanceof EntityAgeable)
-				entropy.setMaxAge(84000);
+				entropy.setMaxAge(4380000);
 		}
 		
 		public static IEntropy get(EntityLiving living) {

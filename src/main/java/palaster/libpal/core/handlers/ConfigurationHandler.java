@@ -25,7 +25,7 @@ public class ConfigurationHandler {
 	}
 	
 	public static void sync() {
-		enableEntropy = configFile.getBoolean("Enable Mob Entropy", Configuration.CATEGORY_GENERAL, true, "");
+		enableEntropy = configFile.getBoolean("Enable Mob Entropy", Configuration.CATEGORY_GENERAL, false, "");
 
 		if(configFile.hasChanged())
 			configFile.save();

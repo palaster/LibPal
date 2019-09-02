@@ -8,6 +8,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -17,6 +18,7 @@ import palaster.libpal.api.IModObject;
 import palaster.libpal.api.ISubType;
 import palaster.libpal.api.capabilities.EntropyCapability.EntropyCapabilityProvider;
 import palaster.libpal.api.capabilities.IEntropy;
+import palaster.libpal.items.LPItems;
 import palaster.libpal.libs.LibMod;
 
 @Mod.EventBusSubscriber(modid = LibMod.MODID)
@@ -37,6 +39,11 @@ public class EventHandler {
 		if(ConfigurationHandler.enableEntropy)
 			if(e.getObject() != null && e.getObject() instanceof EntityLiving && !e.getObject().hasCapability(EntropyCapabilityProvider.ENTROPY_CAP, null))
 				e.addCapability(new ResourceLocation(LibMod.MODID, "IEntropy"), new EntropyCapabilityProvider((EntityLiving) e.getObject()));
+	}
+
+	@SubscribeEvent
+	public static void registerItems(RegistryEvent.Register<Item> e) {
+		e.getRegistry().registerAll(LPItems.STOP_CLOCK);
 	}
 
 	@SubscribeEvent

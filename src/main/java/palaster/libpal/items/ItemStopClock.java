@@ -13,7 +13,7 @@ import palaster.libpal.libs.LibMod;
 public class ItemStopClock extends ItemModSpecial {
 
     public ItemStopClock() {
-        super();
+        super(32);
         setCreativeTab(CreativeTabs.MISC);
         setRegistryName(LibMod.MODID, "stop_clock");
         setUnlocalizedName("stop_clock");
@@ -26,6 +26,7 @@ public class ItemStopClock extends ItemModSpecial {
                 IEntropy entropy = EntropyCapability.EntropyCapabilityProvider.get((EntityLiving) target);
                 if(entropy != null) {
                     entropy.setMaxAge(-1);
+                    stack.damageItem(1, playerIn);
                     return true;
                 }
             }

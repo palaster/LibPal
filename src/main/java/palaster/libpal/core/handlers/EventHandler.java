@@ -18,6 +18,7 @@ import palaster.libpal.api.IModObject;
 import palaster.libpal.api.ISubType;
 import palaster.libpal.api.capabilities.EntropyCapability.EntropyCapabilityProvider;
 import palaster.libpal.api.capabilities.IEntropy;
+import palaster.libpal.items.LPItemBlock;
 import palaster.libpal.items.LPItems;
 import palaster.libpal.libs.LibMod;
 
@@ -50,7 +51,7 @@ public class EventHandler {
 	@SideOnly(Side.CLIENT)
 	public static void registerModels(ModelRegistryEvent e) {
 		for(Item item : Item.REGISTRY)
-			if(item instanceof IModObject) {
+			if(item instanceof IModObject || item instanceof LPItemBlock) {
 				if(item instanceof ISubType)
 					for(int i = 0; i < ((ISubType) item).getAmountOfSubTypes(); i++)
 						ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(item.getRegistryName().getResourceDomain() + ":" + ((ISubType) item).getTypes()[i], "inventory"));

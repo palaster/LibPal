@@ -7,12 +7,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 
 public abstract class TileEntityModInventory extends TileEntityMod {
 
-	protected SimpleItemStackHandler itemHandler = createItemHandler();
+	protected ItemStackHandler itemHandler = createItemHandler();
 	
 	@Override
 	public void readPacketNBT(NBTTagCompound compound) {
@@ -25,30 +24,26 @@ public abstract class TileEntityModInventory extends TileEntityMod {
 	
 	public abstract int getSizeInventory();
 
-	protected SimpleItemStackHandler createItemHandler() { return new SimpleItemStackHandler(this, true); }
+	protected ItemStackHandler createItemHandler() { return new SimpleItemStackHandler(this, true); }
 	
-	public IItemHandlerModifiable getItemHandler() { return itemHandler; }
+	public ItemStackHandler getItemHandler() { return itemHandler; }
 
 	@Override
 	public boolean hasCapability(@Nonnull Capability<?> cap, @Nonnull EnumFacing side) { return cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(cap, side); }
 	
 	@Nonnull
 	@Override
-	public <T> T getCapability(@Nonnull Capability<T> cap, @Nonnull EnumFacing side) {
-		if(cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
-			return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(itemHandler);
-		return super.getCapability(cap, side);
-	}
+	public <T> T getCapability(@Nonnull Capability<T> cap, @Nonnull EnumFacing side) { return cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(itemHandler) : super.getCapability(cap, side); }
 	
 	protected static class SimpleItemStackHandler extends ItemStackHandler {
 
 		private final boolean allowWrite;
 		private final TileEntityModInventory tile;
 
-		public SimpleItemStackHandler(TileEntityModInventory inv, boolean allowWrite) {
-			super(inv.getSizeInventory());
+		public SimpleItemStackHandler(TileEntityModInventory tile, boolean allowWrite) {
+			super(tile.getSizeInventory());
 			this.allowWrite = allowWrite;
-			this.tile = inv;
+			this.tile = tile;
 		}
 
 		@Override

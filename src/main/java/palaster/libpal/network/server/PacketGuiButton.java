@@ -1,15 +1,19 @@
 package palaster.libpal.network.server;
 
-import java.io.IOException;
+import java.util.function.Supplier;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.relauncher.Side;
-import palaster.libpal.api.IReceiveButton;
-import palaster.libpal.network.AbstractMessage.AbstractServerMessage;
+import net.minecraftforge.fml.network.NetworkEvent;
 
+public final class PacketGuiButton {
+	public static void encode(PacketGuiButton msg, PacketBuffer buffer) { }
+	
+	public static PacketGuiButton decode(PacketBuffer buffer) { return new PacketGuiButton(); }
+	
+	public void handle(Supplier<NetworkEvent.Context> ctx) { ctx.get().setPacketHandled(true); }
+}
+
+/* TODO: Prior to 1.16.5
 public class GuiButtonMessage extends AbstractServerMessage<GuiButtonMessage> {
 	
 	private int hand = -1;
@@ -49,3 +53,4 @@ public class GuiButtonMessage extends AbstractServerMessage<GuiButtonMessage> {
 		}
 	}
 }
+*/

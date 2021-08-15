@@ -1,18 +1,9 @@
 {
-    "1.11.2": {
-		"0.0.1",
-		"0.0.2"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/libpal",
+    "1.16.5": {
+		"0.0.6"
     },
-	"1.12.2": {
-		"0.0.3",
-		"0.0.4",
-		"0.0.5"
-	},
-    "homepage": "https://minecraft.curseforge.com/projects/libpal",
     "promos": {
-        "1.11.2-latest": "0.0.2",
-        "1.11.2-recommended": "0.0.2"
-		"1.12.2-latest": "0.0.5",
-        "1.12.2-recommended": "0.0.5"
+        "1.16.5-latest": "0.0.6"
     }
 }

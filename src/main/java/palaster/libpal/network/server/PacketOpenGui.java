@@ -1,11 +1,19 @@
 package palaster.libpal.network.server;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.relauncher.Side;
-import palaster.libpal.network.AbstractMessage.AbstractServerMessage;
+import java.util.function.Supplier;
 
+import net.minecraft.network.PacketBuffer;
+import net.minecraftforge.fml.network.NetworkEvent;
+
+public final class PacketOpenGui {
+	public static void encode(PacketOpenGui msg, PacketBuffer buffer) { }
+	
+	public static PacketOpenGui decode(PacketBuffer buffer) { return new PacketOpenGui(); }
+	
+	public void handle(Supplier<NetworkEvent.Context> ctx) { ctx.get().setPacketHandled(true); }
+}
+
+/* TODO: Prior to 1.16.5
 public class OpenGuiMessage extends AbstractServerMessage<OpenGuiMessage> {
 
 	private String s;
@@ -41,3 +49,4 @@ public class OpenGuiMessage extends AbstractServerMessage<OpenGuiMessage> {
 	@Override
 	public void process(EntityPlayer player, Side side) { player.openGui(s, this.id, player.world, pos.getX(), pos.getY(), pos.getZ()); }
 }
+*/

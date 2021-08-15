@@ -5,87 +5,86 @@ import java.util.UUID;
 import javax.annotation.Nullable;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTBase;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.INBT;
 
 public class NBTHelper {
-
-	public static ItemStack giveNBTTagCompound(ItemStack stack) {
-		stack.setTagCompound(new NBTTagCompound());
+	public static ItemStack giveCompoundNBT(ItemStack stack) {
+		stack.setTag(new CompoundNBT());
 		return stack;
 	}
 
 	public static ItemStack setIntegerToItemStack(ItemStack stack, String key, int value) {
-		if(!stack.hasTagCompound())
-			stack = giveNBTTagCompound(stack);
-		stack.getTagCompound().setInteger(key, value);
+		if(!stack.hasTag())
+			stack = giveCompoundNBT(stack);
+		stack.getTag().putInt(key, value);
 		return stack;
 	}
 	
 	public static ItemStack setBooleanToItemStack(ItemStack stack, String key, boolean value) {
-		if(!stack.hasTagCompound())
-			stack = giveNBTTagCompound(stack);
-		stack.getTagCompound().setBoolean(key, value);
+		if (!stack.hasTag())
+			stack = giveCompoundNBT(stack);
+		stack.getTag().putBoolean(key, value);
 		return stack;
 	}
 	
 	public static ItemStack setStringToItemStack(ItemStack stack, String key, String value) {
-		if(!stack.hasTagCompound())
-			stack = giveNBTTagCompound(stack);
-		stack.getTagCompound().setString(key, value);
+		if(!stack.hasTag())
+			stack = giveCompoundNBT(stack);
+		stack.getTag().putString(key, value);
 		return stack;
 	}
 	
 	public static ItemStack setUUIDToItemStack(ItemStack stack, String key, @Nullable UUID value) {
-		if(!stack.hasTagCompound())
-			stack = giveNBTTagCompound(stack);
+		if(!stack.hasTag())
+			stack = giveCompoundNBT(stack);
 		if(value != null)
-			stack.getTagCompound().setUniqueId(key, value);
+			stack.getTag().putUUID(key, value);
 		return stack;
 	}
 	
-	public static ItemStack setTagToItemStack(ItemStack stack, String key, @Nullable NBTBase value) {
-		if(!stack.hasTagCompound())
-			stack = giveNBTTagCompound(stack);
+	public static ItemStack setTagToItemStack(ItemStack stack, String key, @Nullable INBT value) {
+		if(!stack.hasTag())
+			stack = giveCompoundNBT(stack);
 		if(value != null)
-			stack.getTagCompound().setTag(key, value);
+			stack.getTag().put(key, value);
 		return stack;
 	}
 	
 	public static int getIntegerFromItemStack(ItemStack stack, String key) {
-		if(stack.hasTagCompound())
-			if(stack.getTagCompound().hasKey(key))
-				return stack.getTagCompound().getInteger(key);
+		if(stack.hasTag())
+			if(stack.getTag().contains(key))
+				return stack.getTag().getInt(key);
 		return -1;
 	}
 	
 	public static boolean getBooleanFromItemStack(ItemStack stack, String key) {
-		if(stack.hasTagCompound())
-			if(stack.getTagCompound().hasKey(key))
-				return stack.getTagCompound().getBoolean(key);
+		if(stack.hasTag())
+			if(stack.getTag().contains(key))
+				return stack.getTag().getBoolean(key);
 		return false;
 	}
 	
 	public static String getStringFromItemStack(ItemStack stack, String key) {
-		if(stack.hasTagCompound())
-			if(stack.getTagCompound().hasKey(key))
-				return stack.getTagCompound().getString(key);
+		if(stack.hasTag())
+			if(stack.getTag().contains(key))
+				return stack.getTag().getString(key);
 		return "";
 	}
 	
 	@Nullable
 	public static UUID getUUIDFromItemStack(ItemStack stack, String key) {
-		if(stack.hasTagCompound())
-			if(stack.getTagCompound().hasUniqueId(key))
-				return stack.getTagCompound().getUniqueId(key);
+		if(stack.hasTag())
+			if(stack.getTag().hasUUID(key))
+				return stack.getTag().getUUID(key);
 		return null;
 	}
 	
 	@Nullable
-	public static NBTBase getTagFromItemStack(ItemStack stack, String key) {
-		if(stack.hasTagCompound())
-			if(stack.getTagCompound().hasKey(key))
-				return stack.getTagCompound().getTag(key);
+	public static INBT getTagFromItemStack(ItemStack stack, String key) {
+		if(stack.hasTag())
+			if(stack.getTag().contains(key))
+				return stack.getTag().get(key);
 		return null;
 	}
 }

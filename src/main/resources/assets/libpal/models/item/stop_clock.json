@@ -1,5 +1,5 @@
 {
-  "parent": "libpal:item/lpstandard",
+  "parent": "item/generated",
   "textures": {
     "layer0": "libpal:items/stop_clock"
   }

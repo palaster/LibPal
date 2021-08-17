@@ -6,16 +6,13 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.LazyOptional;
-import palaster.libpal.api.capabilities.EntropyCapability.EntropyProvider;
-import palaster.libpal.api.capabilities.IEntropy;
-import palaster.libpal.libs.LibMod;
+import palaster.libpal.api.capabilities.entropy.EntropyCapability.EntropyProvider;
+import palaster.libpal.api.capabilities.entropy.IEntropy;
 
 public class StopClockItem extends SpecialModItem {
-    public StopClockItem(Properties properties) {
-    	super(properties.tab(ItemGroup.TAB_MISC), 0);
-        setRegistryName(LibMod.MODID, "stop_clock");
-    }
+    public StopClockItem(Properties properties, ResourceLocation resourceLocation) { super(properties.tab(ItemGroup.TAB_MISC), resourceLocation, 0); }
     
     @Override
     public ActionResultType interactLivingEntity(ItemStack stack, PlayerEntity playerIn, LivingEntity target, Hand hand) {

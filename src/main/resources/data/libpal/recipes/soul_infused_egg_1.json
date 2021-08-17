@@ -1,0 +1,28 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern":
+    [
+        "yzy",
+        "zxz",
+        "yzy"
+    ],
+    "key":
+    {
+        "x":
+        {
+            "item": "minecraft:egg"
+        },
+        "y":
+        {
+            "item": "minecraft:redstone"
+        },
+        "z":
+        {
+            "item": "minecraft:glowstone_dust"
+        }
+    },
+    "result":
+    {
+        "item": "libpal:soul_infused_egg"
+    }
+}

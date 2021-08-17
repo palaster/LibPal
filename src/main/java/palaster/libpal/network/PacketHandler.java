@@ -9,10 +9,10 @@ import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import palaster.libpal.libs.LibMod;
-import palaster.libpal.network.server.PacketGuiButton;
-import palaster.libpal.network.server.PacketOpenGui;
 
 public class PacketHandler {
+	public static int packet_id = 0;
+	
 	private static final String PROTOCOL_VERSION = "1";
 	private static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
 			new ResourceLocation(LibMod.MODID, "main"),
@@ -20,11 +20,7 @@ public class PacketHandler {
 			PROTOCOL_VERSION::equals,
 			PROTOCOL_VERSION::equals);
 	
-	public static final void init() {
-		int packetId = 0;
-		INSTANCE.registerMessage(packetId++, PacketGuiButton.class, PacketGuiButton::encode, PacketGuiButton::decode, PacketGuiButton::handle);
-		INSTANCE.registerMessage(packetId++, PacketOpenGui.class, PacketOpenGui::encode, PacketOpenGui::decode, PacketOpenGui::handle);
-	}
+	public static final SimpleChannel getInstance() { return INSTANCE; }
 	
 	public static final void sendTo(ServerPlayerEntity player, Object msg) { INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), msg); }
 	

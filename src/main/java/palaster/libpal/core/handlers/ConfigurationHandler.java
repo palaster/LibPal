@@ -8,11 +8,19 @@ public class ConfigurationHandler {
 
 	public static class Common {
 		public final ForgeConfigSpec.BooleanValue enableEntropy;
+		public final ForgeConfigSpec.BooleanValue enableUnderworld;
+		public final ForgeConfigSpec.ConfigValue<Integer> timeSoulsSpendInUnderworld;
 		
 		public Common(ForgeConfigSpec.Builder builder) {
 			enableEntropy = builder
 					.comment("Set this to true to enable entropy")
 					.define("entropy", false);
+			enableUnderworld = builder
+					.comment("Set this to false to disable the underworlds")
+					.define("underworld", true);
+			timeSoulsSpendInUnderworld = builder
+					.comment("Amount of time souls spend in the underworld (in ticks)")
+					.define("timeSoulsSpendInUnderworld", 168000);
 		}
 	}
 	

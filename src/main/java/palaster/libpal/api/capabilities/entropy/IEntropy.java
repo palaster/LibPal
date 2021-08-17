@@ -1,9 +1,9 @@
-package palaster.libpal.api.capabilities;
+package palaster.libpal.api.capabilities.entropy;
 
 import net.minecraft.nbt.INBT;
 import net.minecraftforge.common.util.INBTSerializable;
 
-public interface IEntropy extends INBTSerializable<INBT>{
+public interface IEntropy extends INBTSerializable<INBT> {
 	
 	void setAge(int age);
 	

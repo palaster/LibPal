@@ -1,4 +1,4 @@
-package palaster.libpal.api.capabilities;
+package palaster.libpal.api.capabilities.entropy;
 
 import java.util.concurrent.Callable;
 
@@ -13,8 +13,8 @@ import net.minecraftforge.common.util.LazyOptional;
 public class EntropyCapability {
 
 	public static class EntropyDefault implements IEntropy {
-		public static final String TAG_STRING_AGE = "lp:entropy:age",
-				TAG_STRING_MAX_AGE = "lp:entropy:max_age";
+		private static final String NBT_AGE = "libpal:entropy:age",
+				NBT_MAX_AGE = "libpal:entropy:maxAge";
 		
 		private int age = 0,
 				maxAge = -1;
@@ -49,8 +49,8 @@ public class EntropyCapability {
 		@Override
 		public INBT serializeNBT() {
 			CompoundNBT nbt = new CompoundNBT();
-			nbt.putInt(TAG_STRING_AGE, age);
-			nbt.putInt(TAG_STRING_MAX_AGE, maxAge);
+			nbt.putInt(NBT_AGE, age);
+			nbt.putInt(NBT_MAX_AGE, maxAge);
 			return nbt;
 		}
 
@@ -58,8 +58,8 @@ public class EntropyCapability {
 		public void deserializeNBT(INBT nbt) {
 			if(nbt instanceof CompoundNBT) {
 				CompoundNBT cNBT = (CompoundNBT) nbt;
-				age = cNBT.getInt(TAG_STRING_AGE);
-				maxAge = cNBT.getInt(TAG_STRING_MAX_AGE);
+				age = cNBT.getInt(NBT_AGE);
+				maxAge = cNBT.getInt(NBT_MAX_AGE);
 			}
 		}
 	}

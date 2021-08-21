@@ -28,6 +28,7 @@ import palaster.libpal.core.handlers.ConfigurationHandler;
 import palaster.libpal.core.handlers.EventHandler;
 import palaster.libpal.items.ModItems;
 import palaster.libpal.libs.LibMod;
+import palaster.libpal.network.PacketHandler;
 
 @Mod(LibMod.MODID)
 public class LibPal {
@@ -56,6 +57,8 @@ public class LibPal {
 	private void onCommonSetup(final FMLCommonSetupEvent event) {
 		CapabilityManager.INSTANCE.register(IEntropy.class, new EntropyStorage(), new EntropyFactory());
 		CapabilityManager.INSTANCE.register(IUnderworld.class, new UnderworldStorage(), new UnderworldFactory());
+		
+		PacketHandler.init();
 	}
 
     private void onClientSetup(final FMLClientSetupEvent event) { }

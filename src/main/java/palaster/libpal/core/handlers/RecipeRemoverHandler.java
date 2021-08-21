@@ -59,7 +59,7 @@ public class RecipeRemoverHandler {
 	 * @param predicate     The predicate
 	 * @return The number of recipes removed
 	 */
-	private static int removeRecipes(final RecipeManager recipeManager, final Predicate<IRecipe> predicate) {
+	private static int removeRecipes(final RecipeManager recipeManager, final Predicate<IRecipe<?>> predicate) {
 		final Map<IRecipeType<?>, Map<ResourceLocation, IRecipe<?>>> existingRecipes;
 		try {
 			@SuppressWarnings("unchecked")

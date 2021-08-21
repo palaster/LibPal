@@ -9,6 +9,7 @@ import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
 import palaster.libpal.libs.LibMod;
+import palaster.libpal.network.server.ScreenButtonPacket;
 
 public class PacketHandler {
 	public static int packet_id = 0;
@@ -19,6 +20,10 @@ public class PacketHandler {
 			() -> PROTOCOL_VERSION,
 			PROTOCOL_VERSION::equals,
 			PROTOCOL_VERSION::equals);
+	
+	public static void init() {
+		INSTANCE.registerMessage(packet_id++, ScreenButtonPacket.class, ScreenButtonPacket::encode, ScreenButtonPacket::decode, ScreenButtonPacket::handle);
+	}
 	
 	public static final SimpleChannel getInstance() { return INSTANCE; }
 	

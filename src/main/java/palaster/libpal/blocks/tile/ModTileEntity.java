@@ -11,6 +11,9 @@ import net.minecraft.tileentity.TileEntityType;
 public abstract class ModTileEntity extends TileEntity implements ITickableTileEntity {
 	
 	public ModTileEntity(TileEntityType<?> tileEntityType) { super(tileEntityType); }
+	
+	@Override
+	public void tick() {}
 
 	@Override
 	public CompoundNBT getUpdateTag() { return save(new CompoundNBT()); }

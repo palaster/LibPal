@@ -1,21 +1,26 @@
 package palaster.libpal.blocks;
 
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ContainerBlock;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.items.IItemHandler;
+import palaster.libpal.blocks.tile.InventoryModTileEntity;
 
 public abstract class ContainerModBlock extends ContainerBlock {
 
 	public ContainerModBlock(Properties properties, ResourceLocation resourceLocation) { super(properties); }
 
 	public abstract TileEntity createModTileEntity(BlockState state, IBlockReader world);
-
+	
+	@Override
+	public BlockRenderType getRenderShape(BlockState blockState) { return BlockRenderType.MODEL; }
+	
 	@Override
 	public TileEntity createTileEntity(BlockState state, IBlockReader world) { return createModTileEntity(state, world) != null ? createModTileEntity(state, world) : super.createTileEntity(state, world); }
 
@@ -26,9 +31,10 @@ public abstract class ContainerModBlock extends ContainerBlock {
 	public void onRemove(BlockState state, World world, BlockPos blockPos, BlockState newState, boolean isMoving) {
 		if(!state.is(newState.getBlock())) {
 			TileEntity tileEntity = world.getBlockEntity(blockPos);
-			if (tileEntity instanceof IInventory) {
-				InventoryHelper.dropContents(world, blockPos, (IInventory) tileEntity);
-				world.updateNeighbourForOutputSignal(blockPos, this);
+			if (tileEntity instanceof InventoryModTileEntity) {
+				IItemHandler ih = ((InventoryModTileEntity) tileEntity).getItemHandler();
+				for(int i = 0; i < ih.getSlots(); i++)
+					InventoryHelper.dropItemStack(world, blockPos.getX(), blockPos.getY(), blockPos.getZ(), ih.getStackInSlot(i));
 			}
 			super.onRemove(state, world, blockPos, newState, isMoving);
 		}

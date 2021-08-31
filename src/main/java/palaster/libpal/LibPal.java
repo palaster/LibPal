@@ -1,8 +1,5 @@
 package palaster.libpal;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
@@ -33,8 +30,6 @@ import palaster.libpal.network.PacketHandler;
 @Mod(LibMod.MODID)
 public class LibPal {
 
-	private static final Logger LOGGER = LogManager.getLogger();
-	
 	public LibPal() {
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ConfigurationHandler.COMMON_SPEC);
 		

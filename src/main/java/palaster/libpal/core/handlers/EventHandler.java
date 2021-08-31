@@ -29,7 +29,7 @@ public class EventHandler {
 	public static void onLivingDeath(LivingDeathEvent e) {
 		if(!e.isCanceled() && e.getEntityLiving().getMobType() != CreatureAttribute.UNDEAD && e.getEntityLiving() instanceof MobEntity) {
 			MobEntity mob = (MobEntity) e.getEntityLiving();
-			//if(mob.isPersistenceRequired() || (mob.requiresCustomPersistence() && mob.hasCustomName()) || (!mob.removeWhenFarAway(0) && mob.hasCustomName())) {
+			// TODO: if(mob.isPersistenceRequired() || (mob.requiresCustomPersistence() && mob.hasCustomName()) || (!mob.removeWhenFarAway(0) && mob.hasCustomName())) {
 			if(mob.hasCustomName()) {
 				LazyOptional<IUnderworld> lazy_optional_underworld =  e.getEntityLiving().level.getCapability(UnderworldProvider.UNDERWORLD_CAPABILITY, null);
 				IUnderworld underworld = lazy_optional_underworld.orElse(null);

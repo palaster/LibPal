@@ -54,6 +54,10 @@ public abstract class InventoryModTileEntity extends ModTileEntity {
 			this.allowWrite = allowWrite;
 		}
 		
+		protected InventoryModTileEntity getInventoryModTileEntity() { return inventoryModTileEntity; }
+
+		protected boolean canWrite() { return allowWrite; }
+		
 		@Override
 		public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) { return allowWrite ? super.insertItem(slot, stack, simulate) : stack; }
 		

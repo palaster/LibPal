@@ -11,7 +11,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '0.0.8'
+version = '0.0.9'
 group = 'palaster.libpal'
 archivesBaseName = 'libpal'
 

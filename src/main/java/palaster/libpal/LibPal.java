@@ -1,8 +1,10 @@
 package palaster.libpal;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -26,6 +28,7 @@ import palaster.libpal.core.handlers.EventHandler;
 import palaster.libpal.items.ModItems;
 import palaster.libpal.libs.LibMod;
 import palaster.libpal.network.PacketHandler;
+import palaster.libpal.recipes.ConfigCondition;
 
 @Mod(LibMod.MODID)
 public class LibPal {
@@ -54,6 +57,11 @@ public class LibPal {
 		CapabilityManager.INSTANCE.register(IUnderworld.class, new UnderworldStorage(), new UnderworldFactory());
 		
 		PacketHandler.init();
+		
+		event.enqueueWork(() -> {
+			if(!ConfigurationHandler.COMMON.enableUnderworld.get())
+				ConfigCondition.RECIPES_TO_REMOVE.add(ModItems.SOUL_INFUSED_EGG.getRegistryName());
+		});
 	}
 
     private void onClientSetup(final FMLClientSetupEvent event) { }
@@ -71,6 +79,11 @@ public class LibPal {
         	itemRegistryEvent.getRegistry().registerAll(ModItems.STOP_CLOCK,
         			ModItems.SOUL_INFUSED_EGG,
         			ModItems.TEST);
+        }
+    	
+    	@SubscribeEvent
+        public static void onRecipeSerializerRegistry(final RegistryEvent.Register<IRecipeSerializer<?>> recipeSerializerRegistryEvent) {
+        	CraftingHelper.register(ConfigCondition.Serializer.INSTANCE);
         }
     }
 }

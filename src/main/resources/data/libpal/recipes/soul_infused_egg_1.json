@@ -24,5 +24,11 @@
     "result":
     {
         "item": "libpal:soul_infused_egg"
+    },
+    "conditions": [
+    {
+      "type": "libpal:config",
+      "result": "libpal:soul_infused_egg"
     }
+    ]
 }

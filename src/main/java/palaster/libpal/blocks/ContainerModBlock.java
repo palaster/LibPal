@@ -1,8 +1,6 @@
 package palaster.libpal.blocks;
 
-import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.ContainerBlock;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -12,14 +10,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.items.IItemHandler;
 import palaster.libpal.blocks.tile.InventoryModTileEntity;
 
-public abstract class ContainerModBlock extends ContainerBlock {
+public abstract class ContainerModBlock extends ModBlock {
 
-	public ContainerModBlock(Properties properties, ResourceLocation resourceLocation) { super(properties); }
+	public ContainerModBlock(Properties properties, ResourceLocation resourceLocation) { super(properties, resourceLocation); }
 
 	public abstract TileEntity createModTileEntity(BlockState state, IBlockReader world);
-	
-	@Override
-	public BlockRenderType getRenderShape(BlockState blockState) { return BlockRenderType.MODEL; }
 	
 	@Override
 	public TileEntity createTileEntity(BlockState state, IBlockReader world) { return createModTileEntity(state, world) != null ? createModTileEntity(state, world) : super.createTileEntity(state, world); }
